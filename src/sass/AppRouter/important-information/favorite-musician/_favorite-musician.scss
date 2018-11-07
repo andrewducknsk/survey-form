@@ -1,0 +1,21 @@
+.favorite-musician {
+	text-align: center;
+	margin-bottom: 30px;
+
+	&__title {
+		margin-bottom: 15px;
+		font-size: 18px;
+		line-height: 1.2;
+	}
+
+	&__select {
+		width: 80%;
+		height: 30px;
+		padding-left: 10px;
+		border: 1px solid gray;
+		&:hover,
+		&:focus {
+			border: 1px solid blue;
+		}
+	}
+}

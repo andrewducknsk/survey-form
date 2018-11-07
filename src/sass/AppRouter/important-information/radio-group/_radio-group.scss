@@ -1,0 +1,23 @@
+.radio-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 20px;
+
+	&__title {
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 15px;
+		text-align: center;
+		font-size: 18px;
+		line-height: 1.2;
+	}
+
+	&__label {
+		padding: 0 10px;
+	}
+
+	&__text {
+		text-align: center;
+	}
+}

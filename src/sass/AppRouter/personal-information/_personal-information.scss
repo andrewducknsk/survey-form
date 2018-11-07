@@ -1,0 +1,62 @@
+.personal-information {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+
+	&__title {
+		margin-bottom: 15px;
+		font-size: 20px;
+		line-height: 1.2;
+		text-transform: uppercase;
+
+		// @include section-title;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		width: 280px;
+	}
+
+	&__field {
+		height: 35px;
+		margin-bottom: 30px;
+		padding-left: 10px;
+		font-size: 15px;
+		border: 1px solid gray;
+		border-radius: 15px;
+		outline: none;
+
+		&:first-child {
+			margin-bottom: 15px;
+		}
+
+		&:hover,
+		&:focus {
+			border: 1px solid blue;
+		}
+	}
+}
+
+.btn {
+	padding: 10px 0;
+	font-size: 18px;
+	color: #fff;
+	background: green;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: all 0.15s;
+
+	&--thanks {
+		width: 280px;
+	}
+
+	&:hover {
+		background: rgb(8, 163, 34);
+	}
+	&:active {
+		opacity: 0.8;
+	}
+}

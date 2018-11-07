@@ -1,0 +1,19 @@
+.additional-information {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	&__title {
+		margin-bottom: 15px;
+		font-size: 20px;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		width: 280px;
+	}
+}
