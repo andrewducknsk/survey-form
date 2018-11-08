@@ -14,9 +14,6 @@
 		line-height: 1.2;
 	}
 
-	&__label {
-	}
-
 	&__tile {
 		position: relative;
 		display: inline-block;
@@ -25,10 +22,7 @@
 		margin: 5px 15px;
 		border: 3px solid grey;
 		border-radius: 5px;
-
-		&--check {
-			border-color: lightgreen;
-		}
+		cursor: pointer;
 
 		&--one {
 			background: red;
@@ -69,5 +63,8 @@
 
 	&__checkbox {
 		display: none;
+		&:checked ~ .favorite-color__tile {
+			border-color: lawngreen;
+		}
 	}
 }

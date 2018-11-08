@@ -1,5 +1,11 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {
+	writeFavoriteMusician,
+	writeFavoriteNumber,
+	changeStep,
+} from '../../actions/index';
 import '../../sass/AppRouter/important-information/_important-information.scss';
 import '../../sass/AppRouter/important-information/radio-group/_radio-group.scss';
 import '../../sass/AppRouter/important-information/favorite-musician/_favorite-musician.scss';
@@ -16,7 +22,16 @@ class ImportantInformation extends PureComponent {
 		this.setState({[name]: value});
 	};
 
-	handleOnClick = () => {};
+	handleOnClick = e => {
+		const {writeFavoriteMusician, writeFavoriteNumber, changeStep} = this.props;
+		const {favoriteMusician, favoriteNumber} = this.state;
+
+		writeFavoriteMusician(favoriteMusician);
+		writeFavoriteNumber(favoriteNumber);
+		changeStep(3);
+
+		this.setState({favoriteNumber: undefined, favoriteMusician: undefined});
+	};
 
 	render() {
 		return (
@@ -33,7 +48,7 @@ class ImportantInformation extends PureComponent {
 								className="radio-group__radio-btn"
 								type="radio"
 								value="1"
-								name="likeNumber"
+								name="favoriteNumber"
 							/>
 						</label>
 						<label className="radio-group__label">
@@ -42,7 +57,7 @@ class ImportantInformation extends PureComponent {
 								className="radio-group__radio-btn"
 								type="radio"
 								value="2"
-								name="likeNumber"
+								name="favoriteNumber"
 							/>
 						</label>
 						<label className="radio-group__label">
@@ -51,7 +66,7 @@ class ImportantInformation extends PureComponent {
 								className="radio-group__radio-btn"
 								type="radio"
 								value="3"
-								name="likeNumber"
+								name="favoriteNumber"
 							/>
 						</label>
 						<label className="radio-group__label">
@@ -60,7 +75,7 @@ class ImportantInformation extends PureComponent {
 								className="radio-group__radio-btn"
 								type="radio"
 								value="4"
-								name="likeNumber"
+								name="favoriteNumber"
 							/>
 						</label>
 						<label className="radio-group__label">
@@ -69,7 +84,7 @@ class ImportantInformation extends PureComponent {
 								className="radio-group__radio-btn"
 								type="radio"
 								value="5"
-								name="likeNumber"
+								name="favoriteNumber"
 							/>
 						</label>
 					</div>
@@ -92,18 +107,26 @@ class ImportantInformation extends PureComponent {
 						</select>
 					</div>
 
-					<button className="btn" onClick={this.handleOnClick}>
+					<Link
+						to="/additional-information"
+						className="btn"
+						onClick={this.handleOnClick}
+					>
 						Продолжить
-					</button>
+					</Link>
 				</form>
 			</section>
 		);
 	}
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+	writeFavoriteNumber,
+	writeFavoriteMusician,
+	changeStep,
+};
 
 export default connect(
 	mapStateToProps,

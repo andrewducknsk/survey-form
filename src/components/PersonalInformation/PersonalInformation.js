@@ -1,7 +1,8 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {writeName, writeSurname, changeStep} from '../../actions/index';
 import '../../sass/AppRouter/personal-information/_personal-information.scss';
-
 class PersonalInformation extends PureComponent {
 	state = {
 		name: undefined,
@@ -11,10 +12,23 @@ class PersonalInformation extends PureComponent {
 	handleOnChange = e => {
 		const {value, name} = e.target;
 
-		this.setState({[name]: value});
+		this.setState({[name]: value.trim()});
 	};
 
-	handleOnClick = () => {};
+	handleOnClick = e => {
+		const {writeName, writeSurname, changeStep} = this.props;
+		const {name, surname} = this.state;
+
+		if (name === undefined || surname === undefined) {
+			e.preventDefault();
+		} else {
+			writeName(name);
+			writeSurname(surname);
+			changeStep(2);
+
+			this.setState({name: undefined, surname: undefined});
+		}
+	};
 
 	render() {
 		return (
@@ -41,18 +55,26 @@ class PersonalInformation extends PureComponent {
 						required
 						onChange={this.handleOnChange}
 					/>
-					<button className="btn" onClick={this.handleOnClick}>
+					<Link
+						to="/important-information"
+						className="btn"
+						onClick={this.handleOnClick}
+					>
 						Продолжить
-					</button>
+					</Link>
 				</form>
 			</section>
 		);
 	}
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+	writeName,
+	writeSurname,
+	changeStep,
+};
 
 export default connect(
 	mapStateToProps,

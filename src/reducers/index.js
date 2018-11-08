@@ -1,4 +1,6 @@
 import {combineReducers} from 'redux';
-import {TEST} from './test';
+import {FORM} from './form';
 
-export default combineReducers({TEST});
+export default combineReducers({FORM});
+
+export const getStep = state => state.FORM.step;
