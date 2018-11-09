@@ -8,6 +8,8 @@ import '../../sass/AppRouter/additional-information//favorite-color/_favorite-co
 class AdditionalInformation extends PureComponent {
 	state = {
 		favoriteColor: [],
+		isFavoriteColorValid: true,
+		favoriteColorValidError: `Выберите любимый цвет`,
 	};
 
 	handleOnChange = e => {
@@ -27,13 +29,31 @@ class AdditionalInformation extends PureComponent {
 		const {writeFavoriteColor, changeStep} = this.props;
 		const {favoriteColor} = this.state;
 
-		writeFavoriteColor(favoriteColor);
-		changeStep(4);
+		if (this.favoriteColorValid(favoriteColor)) {
+			writeFavoriteColor(favoriteColor);
+			changeStep(4);
 
-		this.setState({favoriteColor: []});
+			this.setState({favoriteColor: []});
+		} else {
+			e.preventDefault();
+		}
+	};
+
+	favoriteColorValid = color => {
+		if (color.length === 0) {
+			this.setState({isFavoriteColorValid: false});
+
+			return false;
+		} else {
+			this.setState({isFavoriteColorValid: true});
+
+			return true;
+		}
 	};
 
 	render() {
+		const {isFavoriteColorValid, favoriteColorValidError} = this.state;
+
 		return (
 			<section className="additional-information">
 				<h2 className="additional-information__title">
@@ -123,6 +143,9 @@ class AdditionalInformation extends PureComponent {
 							/>
 							<span className="favorite-color__tile favorite-color__tile--nine" />
 						</label>
+						{isFavoriteColorValid ? null : (
+							<p className="favorite-color__error">{favoriteColorValidError}</p>
+						)}
 					</div>
 					<Link to="/thanks" className="btn" onClick={this.handleOnClick}>
 						Продолжить

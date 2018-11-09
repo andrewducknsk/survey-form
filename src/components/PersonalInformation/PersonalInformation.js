@@ -7,6 +7,12 @@ class PersonalInformation extends PureComponent {
 	state = {
 		name: undefined,
 		surname: undefined,
+		isNameValid: true,
+		isSurnameValid: true,
+		isNameLengthValid: true,
+		isSurnameLengthValid: true,
+		langValidError: `Введите русскими буквами`,
+		lengthValidError: `Не менее 2-х символов`,
 	};
 
 	handleOnChange = e => {
@@ -19,42 +25,109 @@ class PersonalInformation extends PureComponent {
 		const {writeName, writeSurname, changeStep} = this.props;
 		const {name, surname} = this.state;
 
-		if (name === undefined || surname === undefined) {
-			e.preventDefault();
-		} else {
+		if (this.nameValid(name) && this.surnameValid(surname)) {
 			writeName(name);
 			writeSurname(surname);
 			changeStep(2);
 
 			this.setState({name: undefined, surname: undefined});
+		} else {
+			e.preventDefault();
+		}
+	};
+
+	regexpValid = value => /^[А-Яа-яЁё\s]+$/i.test(value);
+
+	nameValid = name => {
+		if (name !== undefined && name.length >= 2) {
+			this.setState({isNameLengthValid: true});
+
+			if (this.regexpValid(name)) {
+				this.setState({isNameValid: true});
+
+				return true;
+			} else {
+				this.setState({isNameValid: false});
+
+				return false;
+			}
+		} else {
+			this.setState({isNameLengthValid: false});
+
+			return false;
+		}
+	};
+
+	surnameValid = surname => {
+		if (surname !== undefined && surname.length >= 2) {
+			this.setState({isSurnameLengthValid: true});
+
+			if (this.regexpValid(surname)) {
+				this.setState({isSurnameValid: true});
+
+				return true;
+			} else {
+				this.setState({isSurnameValid: false});
+
+				return false;
+			}
+		} else {
+			this.setState({isSurnameLengthValid: false});
+
+			return false;
 		}
 	};
 
 	render() {
+		const {
+			isNameValid,
+			isSurnameValid,
+			isNameLengthValid,
+			isSurnameLengthValid,
+			langValidError,
+			lengthValidError,
+		} = this.state;
+
 		return (
 			<section className="personal-information">
 				<h2 className="personal-information__title">Личная информация</h2>
-				<form className="personal-information__form">
+				<div className="personal-information__form">
 					<input
-						className="personal-information__field"
+						className={`personal-information__field ${
+							isNameValid || isNameLengthValid
+								? null
+								: `personal-information__field--error`
+						}`}
 						type="text"
 						name="name"
-						minLength="2"
-						pattern="^[А-Яа-яЁё\s]+$"
 						placeholder="Имя"
 						required
 						onChange={this.handleOnChange}
 					/>
+					{isNameValid ? null : (
+						<p className="personal-information__error">{langValidError}</p>
+					)}
+					{isNameLengthValid ? null : (
+						<p className="personal-information__error">{lengthValidError}</p>
+					)}
 					<input
-						className="personal-information__field"
+						className={`personal-information__field ${
+							isSurnameValid || isSurnameLengthValid
+								? null
+								: `personal-information__field--error`
+						}`}
 						type="text"
 						name="surname"
-						minLength="2"
-						pattern="^[А-Яа-яЁё\s]+$"
 						placeholder="Фамилия"
 						required
 						onChange={this.handleOnChange}
 					/>
+					{isSurnameValid ? null : (
+						<p className="personal-information__error">{langValidError}</p>
+					)}
+					{isSurnameLengthValid ? null : (
+						<p className="personal-information__error">{lengthValidError}</p>
+					)}
 					<Link
 						to="/important-information"
 						className="btn"
@@ -62,7 +135,7 @@ class PersonalInformation extends PureComponent {
 					>
 						Продолжить
 					</Link>
-				</form>
+				</div>
 			</section>
 		);
 	}

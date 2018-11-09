@@ -13,7 +13,11 @@ import '../../sass/AppRouter/important-information/favorite-musician/_favorite-m
 class ImportantInformation extends PureComponent {
 	state = {
 		favoriteNumber: undefined,
+		isFavoriteNumberValid: true,
+		favoriteNumberValidError: `Выберите любимое число`,
 		favoriteMusician: undefined,
+		isFavoriteMusicianValid: true,
+		favoriteMusicianValidError: `Выберите любимую группу`,
 	};
 
 	handleOnChange = e => {
@@ -26,14 +30,52 @@ class ImportantInformation extends PureComponent {
 		const {writeFavoriteMusician, writeFavoriteNumber, changeStep} = this.props;
 		const {favoriteMusician, favoriteNumber} = this.state;
 
-		writeFavoriteMusician(favoriteMusician);
-		writeFavoriteNumber(favoriteNumber);
-		changeStep(3);
+		if (
+			this.favoriteNumberValid(favoriteNumber) &&
+			this.favoriteMusicianValid(favoriteMusician)
+		) {
+			writeFavoriteMusician(favoriteMusician);
+			writeFavoriteNumber(favoriteNumber);
+			changeStep(3);
 
-		this.setState({favoriteNumber: undefined, favoriteMusician: undefined});
+			this.setState({favoriteNumber: undefined, favoriteMusician: undefined});
+		} else {
+			e.preventDefault();
+		}
+	};
+
+	favoriteNumberValid = number => {
+		if (number !== undefined && number !== ``) {
+			this.setState({isFavoriteNumberValid: true});
+
+			return true;
+		} else {
+			this.setState({isFavoriteNumberValid: false});
+
+			return false;
+		}
+	};
+
+	favoriteMusicianValid = musician => {
+		if (musician !== undefined && musician !== ``) {
+			this.setState({isFavoriteMusicianValid: true});
+
+			return true;
+		} else {
+			this.setState({isFavoriteMusicianValid: false});
+
+			return false;
+		}
 	};
 
 	render() {
+		const {
+			isFavoriteNumberValid,
+			favoriteNumberValidError,
+			isFavoriteMusicianValid,
+			favoriteMusicianValidError,
+		} = this.state;
+
 		return (
 			<section className="important-information">
 				<h2 className="important-information__title">
@@ -87,6 +129,9 @@ class ImportantInformation extends PureComponent {
 								name="favoriteNumber"
 							/>
 						</label>
+						{isFavoriteNumberValid ? null : (
+							<p className="radio-group__error">{favoriteNumberValidError}</p>
+						)}
 					</div>
 
 					<div className="favorite-musician">
@@ -99,12 +144,17 @@ class ImportantInformation extends PureComponent {
 							onChange={this.handleOnChange}
 							required
 						>
-							<option value="" />
+							<option value="">Выберите группу</option>
 							<option value="queen">Queen</option>
 							<option value="ac/dc">AC/DC</option>
 							<option value="the beatles">The Beatles</option>
 							<option value="kiss">Kiss</option>
 						</select>
+						{isFavoriteMusicianValid ? null : (
+							<p className="favorite-musician__error">
+								{favoriteMusicianValidError}
+							</p>
+						)}
 					</div>
 
 					<Link
