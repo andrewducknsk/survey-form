@@ -14,10 +14,15 @@ import {
 const localStorageMiddleware = store => next => action => {
 	switch (action.type) {
 		case checkLocalStorage.toString():
+			// if (getLocalStorage !== null) {
+			// console.log(getLocalStorage);
+			// } else {
+			// console.log(templateStorage);
+			// }
 			if (getLocalStorage !== null) {
-				store.dispatch(loadLocalStorage(getLocalStorage.FORM));
+				store.dispatch(loadLocalStorage(getLocalStorage));
 			} else {
-				store.dispatch(loadLocalStorage(templateStorage.FORM));
+				store.dispatch(loadLocalStorage(templateStorage));
 			}
 			break;
 		case setLocalStorage.toString():

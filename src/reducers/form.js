@@ -16,10 +16,10 @@ export const FORM = handleActions(
 	{
 		[loadLocalStorage]: (state, action) => ({
 			...state,
-			personalInformation: action.payload.personalInformation,
-			importantInformation: action.payload.importantInformation,
-			additionalInformation: action.payload.additionalInformation,
-			step: action.payload.step,
+			personalInformation: action.payload.FORM.personalInformation,
+			importantInformation: action.payload.FORM.importantInformation,
+			additionalInformation: action.payload.FORM.additionalInformation,
+			step: action.payload.FORM.step,
 		}),
 		[resetStore]: (state, action) => ({
 			...state,
