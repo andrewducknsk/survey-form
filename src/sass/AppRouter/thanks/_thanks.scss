@@ -1,0 +1,10 @@
+.thanks {
+	display: flex;
+	flex-direction: column;
+	&__title {
+		text-align: center;
+		font-size: 20px;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+}

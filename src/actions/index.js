@@ -2,7 +2,7 @@ import {createActions} from 'redux-actions';
 
 const actionCreator = createActions({
 	APP: {
-		WRITE: {
+		SET: {
 			NAME: undefined,
 			SURNAME: undefined,
 			FAVORITE: {
@@ -14,17 +14,36 @@ const actionCreator = createActions({
 		CHANGE: {
 			STEP: undefined,
 		},
+		LOCAL_STORAGE: {
+			SET: undefined,
+			LOAD: undefined,
+			CHECK: undefined,
+			CLEAR: undefined,
+		},
+		STORE: {
+			RESET: undefined,
+		},
 	},
 });
 
-export const writeName = actionCreator.app.write.name;
+export const writeName = actionCreator.app.set.name;
 
-export const writeSurname = actionCreator.app.write.surname;
+export const writeSurname = actionCreator.app.set.surname;
 
-export const writeFavoriteNumber = actionCreator.app.write.favorite.number;
+export const writeFavoriteNumber = actionCreator.app.set.favorite.number;
 
-export const writeFavoriteMusician = actionCreator.app.write.favorite.musician;
+export const writeFavoriteMusician = actionCreator.app.set.favorite.musician;
 
-export const writeFavoriteColor = actionCreator.app.write.favorite.color;
+export const writeFavoriteColor = actionCreator.app.set.favorite.color;
 
 export const changeStep = actionCreator.app.change.step;
+
+export const resetStore = actionCreator.app.store.reset;
+
+export const setLocalStorage = actionCreator.app.localStorage.set;
+
+export const loadLocalStorage = actionCreator.app.localStorage.load;
+
+export const checkLocalStorage = actionCreator.app.localStorage.check;
+
+export const clearLocalStorage = actionCreator.app.localStorage.clear;

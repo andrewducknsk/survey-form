@@ -1,4 +1,6 @@
+// Lib
 import {handleActions} from 'redux-actions';
+// Func
 import {
 	writeName,
 	writeSurname,
@@ -6,10 +8,26 @@ import {
 	writeFavoriteMusician,
 	changeStep,
 	writeFavoriteColor,
+	loadLocalStorage,
+	resetStore,
 } from '../actions';
 
 export const FORM = handleActions(
 	{
+		[loadLocalStorage]: (state, action) => ({
+			...state,
+			personalInformation: action.payload.personalInformation,
+			importantInformation: action.payload.importantInformation,
+			additionalInformation: action.payload.additionalInformation,
+			step: action.payload.step,
+		}),
+		[resetStore]: (state, action) => ({
+			...state,
+			personalInformation: action.payload.personalInformation,
+			importantInformation: action.payload.importantInformation,
+			additionalInformation: action.payload.additionalInformation,
+			step: action.payload.step,
+		}),
 		[writeName]: (state, action) => ({
 			...state,
 			personalInformation: {
@@ -56,12 +74,12 @@ export const FORM = handleActions(
 			surname: ``,
 		},
 		importantInformation: {
-			favoriteNumber: [],
-			favoriteMusician: [],
+			favoriteNumber: ``,
+			favoriteMusician: ``,
 		},
 		additionalInformation: {
-			favoriteColor: ``,
+			favoriteColor: [],
 		},
-		step: 1,
+		step: `/`,
 	}
 );

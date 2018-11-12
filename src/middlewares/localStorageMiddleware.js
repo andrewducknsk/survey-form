@@ -1,0 +1,35 @@
+import {
+	checkLocalStorage,
+	loadLocalStorage,
+	setLocalStorage,
+	clearLocalStorage,
+} from '../actions/index';
+import {
+	getLocalStorage,
+	templateStorage,
+	clearingLocalStorage,
+	settingLocalStorage,
+} from '../localStorage';
+
+const localStorageMiddleware = store => next => action => {
+	switch (action.type) {
+		case checkLocalStorage.toString():
+			if (getLocalStorage !== null) {
+				store.dispatch(loadLocalStorage(getLocalStorage.FORM));
+			} else {
+				store.dispatch(loadLocalStorage(templateStorage.FORM));
+			}
+			break;
+		case setLocalStorage.toString():
+			settingLocalStorage(store);
+			break;
+		case clearLocalStorage.toString():
+			clearingLocalStorage();
+			break;
+		default:
+			return next(action);
+	}
+	return next(action);
+};
+
+export default localStorageMiddleware;
