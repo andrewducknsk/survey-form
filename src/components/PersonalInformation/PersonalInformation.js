@@ -86,7 +86,6 @@ class PersonalInformation extends PureComponent {
 			this.setState({
 				name: undefined,
 				surname: undefined,
-				redirect: true,
 			});
 		} else {
 			e.preventDefault();
