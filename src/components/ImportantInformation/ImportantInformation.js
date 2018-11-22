@@ -14,6 +14,7 @@ import {
 import '../../sass/AppRouter/important-information/_important-information.scss';
 import '../../sass/AppRouter/important-information/radio-group/_radio-group.scss';
 import '../../sass/AppRouter/important-information/favorite-musician/_favorite-musician.scss';
+import FavoriteNumber from '../FavoriteNumber/FavoriteNumber';
 
 class ImportantInformation extends PureComponent {
 	state = {
@@ -95,60 +96,12 @@ class ImportantInformation extends PureComponent {
 				<form className='important-information__form'>
 					<div className='radio-group' onChange={this.handleOnChange}>
 						<h3 className='radio-group__title'>Любимая цифра</h3>
-						<label className='radio-group__label'>
-							<p className='radio-group__text'>0</p>
-							<input
-								className='radio-group__radio-btn'
-								type='radio'
-								value='0'
-								name='favoriteNumber'
-							/>
-						</label>
-						<label className='radio-group__label'>
-							<p className='radio-group__text'>1</p>
-							<input
-								className='radio-group__radio-btn'
-								type='radio'
-								value='1'
-								name='favoriteNumber'
-							/>
-						</label>
-						<label className='radio-group__label'>
-							<p className='radio-group__text'>2</p>
-							<input
-								className='radio-group__radio-btn'
-								type='radio'
-								value='2'
-								name='favoriteNumber'
-							/>
-						</label>
-						<label className='radio-group__label'>
-							<p className='radio-group__text'>3</p>
-							<input
-								className='radio-group__radio-btn'
-								type='radio'
-								value='3'
-								name='favoriteNumber'
-							/>
-						</label>
-						<label className='radio-group__label'>
-							<p className='radio-group__text'>4</p>
-							<input
-								className='radio-group__radio-btn'
-								type='radio'
-								value='4'
-								name='favoriteNumber'
-							/>
-						</label>
-						<label className='radio-group__label'>
-							<p className='radio-group__text'>5</p>
-							<input
-								className='radio-group__radio-btn'
-								type='radio'
-								value='5'
-								name='favoriteNumber'
-							/>
-						</label>
+						<FavoriteNumber text={0} value={0} />
+						<FavoriteNumber text={1} value={1} />
+						<FavoriteNumber text={2} value={2} />
+						<FavoriteNumber text={3} value={3} />
+						<FavoriteNumber text={4} value={4} />
+						<FavoriteNumber text={5} value={5} />
 						{isFavoriteNumberValid ? null : (
 							<p className='radio-group__error'>{favoriteNumberValidError}</p>
 						)}

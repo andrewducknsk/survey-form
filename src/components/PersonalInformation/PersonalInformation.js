@@ -108,6 +108,7 @@ class PersonalInformation extends PureComponent {
 				<form
 					className='personal-information__form'
 					name='personal-information'
+					onSubmit={this.handleOnClick}
 				>
 					<input
 						className={`personal-information__field ${
@@ -143,13 +144,16 @@ class PersonalInformation extends PureComponent {
 					{isSurnameLengthValid ? null : (
 						<p className='personal-information__error'>{lengthValidError}</p>
 					)}
-					<Link
+					{/* <Link
 						to='/important-information'
 						className='btn'
 						onClick={this.handleOnClick}
 					>
 						Продолжить
-					</Link>
+					</Link> */}
+					<button className='btn' type='submit'>
+						Go
+					</button>
 				</form>
 			</section>
 		);
