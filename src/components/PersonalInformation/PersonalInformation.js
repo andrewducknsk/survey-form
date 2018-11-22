@@ -108,7 +108,6 @@ class PersonalInformation extends PureComponent {
 				<form
 					className='personal-information__form'
 					name='personal-information'
-					onSubmit={this.handleOnClick}
 				>
 					<input
 						className={`personal-information__field ${
