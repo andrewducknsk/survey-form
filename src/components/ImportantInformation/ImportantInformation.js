@@ -96,12 +96,12 @@ class ImportantInformation extends PureComponent {
 				<form className='important-information__form'>
 					<div className='radio-group' onChange={this.handleOnChange}>
 						<h3 className='radio-group__title'>Любимая цифра</h3>
-						<FavoriteNumber text={0} value={0} />
-						<FavoriteNumber text={1} value={1} />
-						<FavoriteNumber text={2} value={2} />
-						<FavoriteNumber text={3} value={3} />
-						<FavoriteNumber text={4} value={4} />
-						<FavoriteNumber text={5} value={5} />
+						<FavoriteNumber text='0' value='0' />
+						<FavoriteNumber text='1' value='1' />
+						<FavoriteNumber text='2' value='2' />
+						<FavoriteNumber text='3' value='3' />
+						<FavoriteNumber text='4' value='4' />
+						<FavoriteNumber text='5' value='5' />
 						{isFavoriteNumberValid ? null : (
 							<p className='radio-group__error'>{favoriteNumberValidError}</p>
 						)}
