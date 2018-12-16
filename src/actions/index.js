@@ -40,6 +40,7 @@ export const changeStep = actionCreator.app.change.step;
 
 export const resetStore = actionCreator.app.store.reset;
 
+// LocalStorage
 export const setLocalStorage = actionCreator.app.localStorage.set;
 
 export const loadLocalStorage = actionCreator.app.localStorage.load;

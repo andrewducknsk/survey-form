@@ -6,7 +6,6 @@ import {
 	writeSurname,
 	writeFavoriteNumber,
 	writeFavoriteMusician,
-	changeStep,
 	writeFavoriteColor,
 	loadLocalStorage,
 	resetStore,
@@ -19,14 +18,12 @@ export const FORM = handleActions(
 			personalInformation: action.payload.FORM.personalInformation,
 			importantInformation: action.payload.FORM.importantInformation,
 			additionalInformation: action.payload.FORM.additionalInformation,
-			step: action.payload.FORM.step,
 		}),
 		[resetStore]: (state, action) => ({
 			...state,
-			personalInformation: action.payload.personalInformation,
-			importantInformation: action.payload.importantInformation,
-			additionalInformation: action.payload.additionalInformation,
-			step: action.payload.step,
+			personalInformation: action.payload.FORM.personalInformation,
+			importantInformation: action.payload.FORM.importantInformation,
+			additionalInformation: action.payload.FORM.additionalInformation,
 		}),
 		[writeName]: (state, action) => ({
 			...state,
@@ -63,10 +60,6 @@ export const FORM = handleActions(
 				favoriteColor: action.payload,
 			},
 		}),
-		[changeStep]: (state, action) => ({
-			...state,
-			step: action.payload,
-		}),
 	},
 	{
 		personalInformation: {
@@ -80,6 +73,5 @@ export const FORM = handleActions(
 		additionalInformation: {
 			favoriteColor: [],
 		},
-		step: `/`,
 	}
 );

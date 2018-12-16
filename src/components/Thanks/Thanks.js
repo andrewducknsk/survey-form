@@ -6,15 +6,32 @@ import PropTypes from 'prop-types';
 // Func
 import {resetStore, clearLocalStorage} from '../../actions';
 import {templateStorage} from '../../localStorage';
+import {getAllForm} from '../../reducers/index';
 // Style
 import '../../sass/AppRouter/thanks/_thanks.scss';
 
 class Thanks extends PureComponent {
+	componentDidMount() {
+		const {form} = this.props;
+
+		this.postForm(form);
+		console.log(form);
+	}
+
+	postForm = data => {
+		fetch(`https://server-nodejs.netlify.com/api/poll-form/info`, {
+			method: 'POST',
+			body: JSON.stringify(data),
+			mode: 'cors',
+			headers: {'Content-Type': 'application/json'},
+		});
+	};
+
 	handleOnClick = () => {
 		const {clearLocalStorage, resetStore} = this.props;
 
 		clearLocalStorage();
-		resetStore(templateStorage.FORM);
+		resetStore(templateStorage);
 	};
 
 	render() {
@@ -29,7 +46,9 @@ class Thanks extends PureComponent {
 	}
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+	form: getAllForm(state),
+});
 
 const mapDispatchToProps = {
 	resetStore,

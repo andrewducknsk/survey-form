@@ -18,6 +18,8 @@ export const templateStorage = {
 		additionalInformation: {
 			favoriteColor: [],
 		},
+	},
+	appStep: {
 		step: `/`,
 	},
 };

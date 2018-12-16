@@ -26,12 +26,13 @@ class AppRouter extends Component {
 		const {step} = this.props;
 
 		if (step === '/') {
-			return <Route path='/' component={Greeting} />;
+			return <Route exact path='/' component={Greeting} />;
 		} else {
 			return (
 				<React.Fragment>
 					<Switch>
 						<Route
+							exact
 							path='/personal-information'
 							component={PersonalInformation}
 						/>
