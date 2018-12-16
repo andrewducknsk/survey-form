@@ -11,22 +11,6 @@ import {getAllForm} from '../../reducers/index';
 import '../../sass/AppRouter/thanks/_thanks.scss';
 
 class Thanks extends PureComponent {
-	componentDidMount() {
-		const {form} = this.props;
-
-		this.postForm(form);
-		console.log(form);
-	}
-
-	postForm = data => {
-		fetch(`https://server-nodejs.netlify.com/api/poll-form/info`, {
-			method: 'POST',
-			body: JSON.stringify(data),
-			mode: 'cors',
-			headers: {'Content-Type': 'application/json'},
-		});
-	};
-
 	handleOnClick = () => {
 		const {clearLocalStorage, resetStore} = this.props;
 
