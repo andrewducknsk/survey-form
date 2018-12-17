@@ -72,15 +72,15 @@ class AdditionalInformation extends PureComponent {
 				<form className='additional-information__form'>
 					<div className='favorite-color' onChange={this.handleOnChange}>
 						<h3 className='favorite-color__title'>Любимый цвет</h3>
-						<FavoriteColor color='red' number='one' />
-						<FavoriteColor color='orange' number='two' />
-						<FavoriteColor color='yellow' number='three' />
-						<FavoriteColor color='green' number='four' />
-						<FavoriteColor color='cyan' number='five' />
-						<FavoriteColor color='blue' number='six' />
-						<FavoriteColor color='purple' number='seven' />
-						<FavoriteColor color='pink' number='eight' />
-						<FavoriteColor color='black' number='nine' />
+						<FavoriteColor color='Red' number='one' />
+						<FavoriteColor color='Orange' number='two' />
+						<FavoriteColor color='Yellow' number='three' />
+						<FavoriteColor color='Green' number='four' />
+						<FavoriteColor color='Cyan' number='five' />
+						<FavoriteColor color='Blue' number='six' />
+						<FavoriteColor color='Purple' number='seven' />
+						<FavoriteColor color='Pink' number='eight' />
+						<FavoriteColor color='Black' number='nine' />
 						{isFavoriteColorValid ? null : (
 							<p className='favorite-color__error'>{favoriteColorValidError}</p>
 						)}

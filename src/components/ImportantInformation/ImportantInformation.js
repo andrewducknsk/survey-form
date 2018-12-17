@@ -118,10 +118,10 @@ class ImportantInformation extends PureComponent {
 							required
 						>
 							<option value=''>Выберите группу</option>
-							<option value='queen'>Queen</option>
-							<option value='ac/dc'>AC/DC</option>
-							<option value='the beatles'>The Beatles</option>
-							<option value='kiss'>Kiss</option>
+							<option value='Queen'>Queen</option>
+							<option value='AC/DC'>AC/DC</option>
+							<option value='The Beatles'>The Beatles</option>
+							<option value='Kiss'>Kiss</option>
 						</select>
 						{isFavoriteMusicianValid ? null : (
 							<p className='favorite-musician__error'>
