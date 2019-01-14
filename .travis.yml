@@ -4,6 +4,10 @@ node_js:
 
 cache: yarn
 
+cache:
+  directories: 
+    - 'node_modules'
+
 script:
   - yarn build
   - yarn test
