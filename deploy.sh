@@ -2,7 +2,7 @@ set -e
 
 zip -r build.zip build
 
-curl -X PUT
+curl -X PUT -F
      -H "Content-Type: application/zip" \
      -H "Authorization: Bearer $netlify_key" \
      --data-binary "@build.zip" \
