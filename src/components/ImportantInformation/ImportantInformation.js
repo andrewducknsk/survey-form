@@ -1,8 +1,11 @@
 // Lib
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+// Components
+import {SectionWrapper} from '../SectionWrapper/SectionWrapper';
+import FavoriteNumber from '../FavoriteNumber/FavoriteNumber';
+import FavoriteMusician from '../FavoriteMusician/FavoriteMusician';
 // Func
 import {
 	writeFavoriteMusician,
@@ -11,12 +14,9 @@ import {
 	setLocalStorage,
 } from '../../actions/index';
 // Style
-import '../../sass/AppRouter/important-information/_important-information.scss';
-import '../../sass/AppRouter/important-information/radio-group/_radio-group.scss';
-import '../../sass/AppRouter/important-information/favorite-musician/_favorite-musician.scss';
-import FavoriteNumber from '../FavoriteNumber/FavoriteNumber';
+import './important-information.scss';
 
-class ImportantInformation extends PureComponent {
+export class ImportantInformation extends PureComponent {
 	state = {
 		favoriteNumber: undefined,
 		isFavoriteNumberValid: true,
@@ -89,56 +89,27 @@ class ImportantInformation extends PureComponent {
 		} = this.state;
 
 		return (
-			<section className='important-information'>
-				<h2 className='important-information__title'>
-					Очень важная информация
-				</h2>
-				<form className='important-information__form'>
-					<div className='radio-group' onChange={this.handleOnChange}>
-						<h3 className='radio-group__title'>Любимая цифра</h3>
-						<FavoriteNumber text='0' value='0' />
-						<FavoriteNumber text='1' value='1' />
-						<FavoriteNumber text='2' value='2' />
-						<FavoriteNumber text='3' value='3' />
-						<FavoriteNumber text='4' value='4' />
-						<FavoriteNumber text='5' value='5' />
-						{isFavoriteNumberValid ? null : (
-							<p className='radio-group__error'>{favoriteNumberValidError}</p>
-						)}
-					</div>
-
-					<div className='favorite-musician'>
-						<h3 className='favorite-musician__title'>
-							Любимая музыкальная группа
-						</h3>
-						<select
-							className='favorite-musician__select'
-							name='favoriteMusician'
-							onChange={this.handleOnChange}
-							required
-						>
-							<option value=''>Выберите группу</option>
-							<option value='Queen'>Queen</option>
-							<option value='AC/DC'>AC/DC</option>
-							<option value='The Beatles'>The Beatles</option>
-							<option value='Kiss'>Kiss</option>
-						</select>
-						{isFavoriteMusicianValid ? null : (
-							<p className='favorite-musician__error'>
-								{favoriteMusicianValidError}
-							</p>
-						)}
-					</div>
-
-					<Link
-						to='/additional-information'
-						className='btn'
-						onClick={this.handleOnClick}
-					>
-						Продолжить
-					</Link>
-				</form>
-			</section>
+			<SectionWrapper
+				sectionClass='important-information'
+				title='Очень важная информация'
+				titleClass='important-information__title'
+				form={true}
+				formClass='important-information__form'
+				link='/additional-information'
+				linkText='Продолжить'
+				onClickLink={this.handleOnClick}
+			>
+				<FavoriteNumber
+					numberValid={isFavoriteNumberValid}
+					numberError={favoriteNumberValidError}
+					onChange={this.handleOnChange}
+				/>
+				<FavoriteMusician
+					musicianValid={isFavoriteMusicianValid}
+					musicianError={favoriteMusicianValidError}
+					onChange={this.handleOnChange}
+				/>
+			</SectionWrapper>
 		);
 	}
 }

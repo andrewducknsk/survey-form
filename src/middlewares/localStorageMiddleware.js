@@ -11,7 +11,7 @@ import {
 	settingLocalStorage,
 } from '../localStorage';
 
-const localStorageMiddleware = store => next => action => {
+export const localStorageMiddleware = store => next => action => {
 	switch (action.type) {
 		case checkLocalStorage.toString():
 			if (getLocalStorage !== null) {

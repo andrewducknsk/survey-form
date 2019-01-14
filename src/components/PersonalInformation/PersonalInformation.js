@@ -2,7 +2,10 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+// Components
+import {SectionWrapper} from '../SectionWrapper/SectionWrapper';
+import {ValidError} from '../ValidError/ValidError';
+import {InputText} from '../InputText/InputText';
 // Func
 import {
 	writeName,
@@ -11,9 +14,9 @@ import {
 	setLocalStorage,
 } from '../../actions/index';
 // Style
-import '../../sass/AppRouter/personal-information/_personal-information.scss';
+import './personal-information.scss';
 
-class PersonalInformation extends PureComponent {
+export class PersonalInformation extends PureComponent {
 	state = {
 		name: undefined,
 		surname: undefined,
@@ -103,55 +106,33 @@ class PersonalInformation extends PureComponent {
 		} = this.state;
 
 		return (
-			<section className='personal-information'>
-				<h2 className='personal-information__title'>Личная информация</h2>
-				<form
-					className='personal-information__form'
-					name='personal-information'
-				>
-					<input
-						className={`personal-information__field ${
-							isNameValid || isNameLengthValid
-								? null
-								: 'personal-information__field--error'
-						}`}
-						type='text'
-						name='name'
-						placeholder='Имя'
-						onChange={this.handleOnChange}
-					/>
-					{isNameValid ? null : (
-						<p className='personal-information__error'>{langValidError}</p>
-					)}
-					{isNameLengthValid ? null : (
-						<p className='personal-information__error'>{lengthValidError}</p>
-					)}
-					<input
-						className={`personal-information__field ${
-							isSurnameValid || isSurnameLengthValid
-								? null
-								: 'personal-information__field--error'
-						}`}
-						type='text'
-						name='surname'
-						placeholder='Фамилия'
-						onChange={this.handleOnChange}
-					/>
-					{isSurnameValid ? null : (
-						<p className='personal-information__error'>{langValidError}</p>
-					)}
-					{isSurnameLengthValid ? null : (
-						<p className='personal-information__error'>{lengthValidError}</p>
-					)}
-					<Link
-						to='/important-information'
-						className='btn'
-						onClick={this.handleOnClick}
-					>
-						Продолжить
-					</Link>
-				</form>
-			</section>
+			<SectionWrapper
+				sectionClass='personal-information'
+				titleClass='personal-information__title'
+				title='Личная информация'
+				form={true}
+				formClass='personal-information__form'
+				link='/important-information'
+				linkText='Продолжить'
+				onClickLink={this.handleOnClick}
+			>
+				<InputText
+					name='name'
+					placeholder='Имя'
+					errorClass={isNameValid && isNameLengthValid}
+					onChange={this.handleOnChange}
+				/>
+				{isNameValid ? null : <ValidError text={langValidError} />}
+				{isNameLengthValid ? null : <ValidError text={lengthValidError} />}
+				<InputText
+					name='surname'
+					placeholder='Фамилия'
+					errorClass={isSurnameValid && isSurnameLengthValid}
+					onChange={this.handleOnChange}
+				/>
+				{isSurnameValid ? null : <ValidError text={langValidError} />}
+				{isSurnameLengthValid ? null : <ValidError text={lengthValidError} />}
+			</SectionWrapper>
 		);
 	}
 }

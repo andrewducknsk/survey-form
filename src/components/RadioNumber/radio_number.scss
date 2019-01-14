@@ -1,0 +1,15 @@
+.radio-number {
+	&__label {
+		padding: 0 10px;
+	}
+
+	&__text {
+		text-align: center;
+	}
+
+	&__error {
+		margin-top: 10px;
+		font-size: 12px;
+		color: red;
+	}
+}

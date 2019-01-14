@@ -1,6 +1,6 @@
 import {createActions} from 'redux-actions';
 
-const actionCreator = createActions({
+export const actionCreator = createActions({
 	APP: {
 		SET: {
 			NAME: undefined,

@@ -9,7 +9,7 @@ import {
 	writeFavoriteColor,
 	loadLocalStorage,
 	resetStore,
-} from '../actions';
+} from '../../actions/index';
 
 export const FORM = handleActions(
 	{

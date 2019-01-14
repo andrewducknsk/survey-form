@@ -1,14 +1,15 @@
 // Lib
 import React, {PureComponent} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+// Components
+import {SectionWrapper} from '../SectionWrapper/SectionWrapper';
 // Func
 import {changeStep, setLocalStorage} from '../../actions/index';
 // Style
-import '../../sass/AppRouter/greeting/_greeting.scss';
+import './greeting.scss';
 
-class Greeting extends PureComponent {
+export class Greeting extends PureComponent {
 	handleOnClick = e => {
 		const {changeStep, setLocalStorage} = this.props;
 
@@ -18,16 +19,15 @@ class Greeting extends PureComponent {
 
 	render() {
 		return (
-			<section className='greeting'>
-				<h1 className='greeting__title'>Ответе на пару вопросов</h1>
-				<Link
-					className='btn'
-					to='/personal-information'
-					onClick={this.handleOnClick}
-				>
-					Начать
-				</Link>
-			</section>
+			<SectionWrapper
+				sectionClass='greeting'
+				title='Ответе на пару вопросов'
+				titleClass='greeting__title'
+				form={false}
+				link='/personal-information'
+				linkText='Начать'
+				onClickLink={this.handleOnClick}
+			/>
 		);
 	}
 }

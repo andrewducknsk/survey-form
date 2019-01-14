@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {FORM} from './form';
-import {appStep} from './step';
+import {FORM} from './form/form';
+import {appStep} from './step/step';
 
 export default combineReducers({FORM, appStep});
 

@@ -1,0 +1,23 @@
+.btn {
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+	background: green;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: all 0.15s;
+
+	&--thanks {
+		width: 280px;
+	}
+
+	&:hover {
+		background: rgb(8, 163, 34);
+	}
+	&:active {
+		opacity: 0.8;
+	}
+}

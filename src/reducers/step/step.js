@@ -1,7 +1,7 @@
 // Lib
 import {handleActions} from 'redux-actions';
 // Action
-import {changeStep, resetStore, loadLocalStorage} from '../actions/index';
+import {changeStep, resetStore, loadLocalStorage} from '../../actions/index';
 
 export const appStep = handleActions(
 	{

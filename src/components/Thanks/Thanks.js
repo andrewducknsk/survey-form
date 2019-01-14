@@ -1,31 +1,41 @@
 // Lib
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+// Components
+import {SectionWrapper} from '../SectionWrapper/SectionWrapper';
 // Func
 import {resetStore, clearLocalStorage} from '../../actions';
 import {templateStorage} from '../../localStorage';
 import {getAllForm} from '../../reducers/index';
+import {sendingData} from '../../api';
 // Style
-import '../../sass/AppRouter/thanks/_thanks.scss';
+import './thanks.scss';
 
-class Thanks extends PureComponent {
+export class Thanks extends PureComponent {
+	componentDidMount() {
+		const {form} = this.props;
+
+		sendingData(form);
+	}
+
 	handleOnClick = () => {
 		const {clearLocalStorage, resetStore} = this.props;
-
 		clearLocalStorage();
 		resetStore(templateStorage);
 	};
 
 	render() {
 		return (
-			<section className='thanks'>
-				<h2 className='thanks__title'>Благодарим за ответы!</h2>
-				<Link to='/' className='btn btn--thanks' onClick={this.handleOnClick}>
-					Пожалуйста
-				</Link>
-			</section>
+			<SectionWrapper
+				sectionClass='thanks'
+				title='Благодарим за ответы!'
+				titleClass='thanks__title'
+				form={false}
+				link='/'
+				linkText='Пожалуйста'
+				onClickLink={this.handleOnClick}
+			/>
 		);
 	}
 }

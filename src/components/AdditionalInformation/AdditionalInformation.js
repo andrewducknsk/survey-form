@@ -1,8 +1,10 @@
 // Lib
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+// Components
+import {SectionWrapper} from '../SectionWrapper/SectionWrapper';
+import FavoriteColor from '../FavoriteColor/FavoriteColor.js';
 // Func
 import {
 	writeFavoriteColor,
@@ -10,11 +12,9 @@ import {
 	setLocalStorage,
 } from '../../actions/index.js';
 // Style
-import '../../sass/AppRouter/additional-information/_additional-information.scss';
-import '../../sass/AppRouter/additional-information//favorite-color/_favorite-color.scss';
-import FavoriteColor from '../FavoriteColor/FavoriteColor.js';
+import './additional-information.scss';
 
-class AdditionalInformation extends PureComponent {
+export class AdditionalInformation extends PureComponent {
 	state = {
 		favoriteColor: [],
 		isFavoriteColorValid: true,
@@ -65,31 +65,22 @@ class AdditionalInformation extends PureComponent {
 		const {isFavoriteColorValid, favoriteColorValidError} = this.state;
 
 		return (
-			<section className='additional-information'>
-				<h2 className='additional-information__title'>
-					Дополнительная информация
-				</h2>
-				<form className='additional-information__form'>
-					<div className='favorite-color' onChange={this.handleOnChange}>
-						<h3 className='favorite-color__title'>Любимый цвет</h3>
-						<FavoriteColor color='Red' number='one' />
-						<FavoriteColor color='Orange' number='two' />
-						<FavoriteColor color='Yellow' number='three' />
-						<FavoriteColor color='Green' number='four' />
-						<FavoriteColor color='Cyan' number='five' />
-						<FavoriteColor color='Blue' number='six' />
-						<FavoriteColor color='Purple' number='seven' />
-						<FavoriteColor color='Pink' number='eight' />
-						<FavoriteColor color='Black' number='nine' />
-						{isFavoriteColorValid ? null : (
-							<p className='favorite-color__error'>{favoriteColorValidError}</p>
-						)}
-					</div>
-					<Link to='/thanks' className='btn' onClick={this.handleOnClick}>
-						Продолжить
-					</Link>
-				</form>
-			</section>
+			<SectionWrapper
+				sectionClass='additional-information'
+				title='Дополнительная информация'
+				titleClass='additional-information__title'
+				form={true}
+				formClass='additional-information__form'
+				link='/thanks'
+				linkText='Продолжить'
+				onClickLink={this.handleOnClick}
+			>
+				<FavoriteColor
+					colorValid={isFavoriteColorValid}
+					colorError={favoriteColorValidError}
+					onChange={this.handleOnChange}
+				/>
+			</SectionWrapper>
 		);
 	}
 }

@@ -13,7 +13,7 @@ import Thanks from '../Thanks/Thanks';
 import {getStep} from '../../reducers/index';
 import {checkLocalStorage} from '../../actions/index';
 // Style
-import '../../sass/AppRouter/_app-router.scss';
+import './app-router.scss';
 
 class AppRouter extends Component {
 	componentDidMount() {
